@@ -1,5 +1,8 @@
 .App {
   text-align: center;
+  height: 100%;
+  width: 100%;
+  /* position: relative; */
 }
 
 .App-logo {
@@ -35,4 +38,84 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+
+.imagesBox{
+  height: 500px;
+  padding: 3px;
+}
+.images{
+ height: 445px;
+ overflow: auto;
+ 
+  }
+
+img{
+  height: 200px;
+  width: 200px;
+  margin: 5px;
+}
+
+.googleMap{
+  padding: 50px 50px;
+}
+
+.Navbar {
+  width: 95%;
+  padding: 40px 0px 10px 0px;
+  text-align: left;
+  border-bottom: 1px solid rgb(211, 203, 203);
+  margin: 0px 40px;
+  font-weight: 600;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: rgb(78, 72, 72);
+}
+
+.location{
+  float: right;
+}
+.location span{
+  margin: 0px 10px;
+}
+
+.full{
+  width: 100%;
+  height: 100%;
+}
+
+ul {
+  position: relative;
+  left: 40%;
+  width: 315px;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  color: rgb(114, 105, 105);
+  display: flex;
+}
+
+li {
+  float: right;
+}
+
+li a {
+  display: flex;
+  color: rgb(114, 105, 105);
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  margin: 0px;
+}
+
+li a:hover {
+  background-color: #111;
+  color: white;
+}
+
+.active a {
+  color: black;
+  font-weight: 600;
+  font-size: large;
 }
