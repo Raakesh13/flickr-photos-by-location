@@ -67,9 +67,9 @@ class App extends Component {
       lat,
       lon
     })
-    console.log(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${process.env.FLICKR_API_KEY}&lat=${lat}&lon=${lon}&format=json&nojsoncallback=1`)
+    console.log(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${process.env.REACT_APP_FLICKR_API_KEY}&lat=${lat}&lon=${lon}&format=json&nojsoncallback=1`)
     fetch(
-      `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${process.env.FLICKR_API_KEY}&lat=${lat}&lon=${lon}&format=json&nojsoncallback=1`
+      `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${process.env.REACT_APP_FLICKR_API_KEY}&lat=${lat}&lon=${lon}&format=json&nojsoncallback=1`
     )
       .then(response => {
         return response.json()
