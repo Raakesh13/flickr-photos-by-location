@@ -23,7 +23,7 @@ class App extends Component {
 
   handlePageChange (pageNumber) {
     fetch(
-      `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${process.env.REACT_APP_FLICKR_API_KEY}&lat=${this.state.lat}&lon=${this.state.lon}&format=json&nojsoncallback=1&page=${pageNumber}`
+      `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${REACT_APP_FLICKR_API_KEY}&lat=${this.state.lat}&lon=${this.state.lon}&format=json&nojsoncallback=1&page=${pageNumber}`
     )
       .then(response => {
         return response.json()
@@ -31,14 +31,6 @@ class App extends Component {
       .then(data => {
         let photosarr = data.photos.photo.map(pic => {
           return (
-            <a
-              key={pic.id}
-              href={`https://farm${pic.farm}.staticflickr.com/${pic.server}/${pic.id}_${pic.secret}.jpg`.replace(
-                '"',
-                ''
-              )}
-              target='blank'
-            >
               <img
                 key={pic.id}
                 src={`https://farm${pic.farm}.staticflickr.com/${pic.server}/${pic.id}_${pic.secret}.jpg`.replace(
@@ -47,7 +39,6 @@ class App extends Component {
                 )}
                 alt='not available'
               />
-            </a>
           )
         })
         this.setState({
@@ -69,7 +60,7 @@ class App extends Component {
       lon
     })
     fetch(
-      `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${proces.env.REACT_APP_FLICKR_API_KEY}&lat=${lat}&lon=${lon}&format=json&nojsoncallback=1`
+      `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${REACT_APP_FLICKR_API_KEY}&lat=${lat}&lon=${lon}&format=json&nojsoncallback=1`
     )
       .then(response => {
         return response.json()
@@ -87,7 +78,7 @@ class App extends Component {
                   saveAs(srcPath, srcPath.substring(srcPath.lastIndexOf('/')+1))
                 }}
               />
-            // </a>
+
           )
         })
         this.setState({
@@ -179,7 +170,7 @@ class App extends Component {
         )}
 
         <div className='googleMap'>
-          <LoadScript googleMapsApiKey={process.env.GOOGLE_API_KEY}>
+          <LoadScript googleMapsApiKey={REACT_APP_GOOGLE_API_KEY}>
             <GoogleMap
               mapContainerStyle={{
                 width: 'auto',
