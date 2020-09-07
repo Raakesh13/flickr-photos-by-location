@@ -42,10 +42,12 @@
 
 
 .imagesBox{
+  width:100%;
   height: 500px;
   padding: 3px;
 }
 .images{
+  width: 100%;
  height: 445px;
  overflow: auto;
  
@@ -55,6 +57,10 @@ img{
   height: 200px;
   width: 200px;
   margin: 5px;
+}
+
+img:hover{
+  transform: scale(2);
 }
 
 .googleMap{
@@ -74,9 +80,13 @@ img{
 
 .location{
   float: right;
+  display: flex;
+  justify-content: space-between;
+  width: auto;
 }
-.location span{
-  margin: 0px 10px;
+
+.location div{
+  width: auto;
 }
 
 .full{

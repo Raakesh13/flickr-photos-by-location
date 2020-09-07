@@ -7,6 +7,7 @@ import {
 } from '@react-google-maps/api'
 import Pagination from 'react-js-pagination'
 import './App.css'
+import {saveAs} from 'file-saver'
 
 class App extends Component {
   state = {
@@ -15,14 +16,14 @@ class App extends Component {
     perPage: 0,
     totalItemsCount: 0,
     totalpages: 0,
-    lat: '',
-    lon: '',
+    lat: 12.971599,
+    lon: 77.594566,
     error: ''
   }
 
   handlePageChange (pageNumber) {
     fetch(
-      `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${process.env.REACT_APP_FLICKR_API_KEY}&lat=${this.state.lat}&lon=${this.state.lon}&format=json&nojsoncallback=1&page=${pageNumber}`
+      `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${REACT_APP_FLICKR_API_KEY}&lat=${this.state.lat}&lon=${this.state.lon}&format=json&nojsoncallback=1&page=${pageNumber}`
     )
       .then(response => {
         return response.json()
@@ -68,31 +69,25 @@ class App extends Component {
       lon
     })
     fetch(
-      `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${process.env.REACT_APP_FLICKR_API_KEY}&lat=${lat}&lon=${lon}&format=json&nojsoncallback=1`
+      `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${REACT_APP_FLICKR_API_KEY}&lat=${lat}&lon=${lon}&format=json&nojsoncallback=1`
     )
       .then(response => {
         return response.json()
       })
       .then(data => {
         let photosarr = data.photos.photo.map(pic => {
+          const srcPath = `https://farm${pic.farm}.staticflickr.com/${pic.server}/${pic.id}_${pic.secret}.jpg`.replace('"', '')
           return (
-            <a
-              key={pic.id}
-              href={`https://farm${pic.farm}.staticflickr.com/${pic.server}/${pic.id}_${pic.secret}.jpg`.replace(
-                '"',
-                ''
-              )}
-              target='blank'
-            >
+
               <img
                 key={pic.id}
-                src={`https://farm${pic.farm}.staticflickr.com/${pic.server}/${pic.id}_${pic.secret}.jpg`.replace(
-                  '"',
-                  ''
-                )}
+                src={srcPath}
                 alt='not available'
+                onClick={()=>{
+                  saveAs(srcPath, srcPath.substring(srcPath.lastIndexOf('/')+1))
+                }}
               />
-            </a>
+            // </a>
           )
         })
         this.setState({
@@ -133,13 +128,12 @@ class App extends Component {
   }
 
   render () {
-    console.log(this.state.error)
     return (
       <div className='App'>
         <div className='Navbar'>
           Search photos by location
           <form className='location' onSubmit={this.handleSubmit}>
-            <span>
+            <div>
               <input
                 id='lat'
                 type='text'
@@ -148,8 +142,8 @@ class App extends Component {
                 value={this.state.lat}
                 onChange={this.handleChange}
               />
-            </span>
-            <span>
+            </div>
+            <div>
               <input
                 id='lon'
                 type='text'
@@ -158,10 +152,10 @@ class App extends Component {
                 value={this.state.lon}
                 onChange={this.handleChange}
               />
-            </span>
-            <span>
+            </div>
+            <div>
               <button type='submit'>search</button>
-            </span>
+            </div>
           </form>
         </div>
         {this.state.photos.length > 0 ? (
@@ -185,7 +179,7 @@ class App extends Component {
         )}
 
         <div className='googleMap'>
-          <LoadScript googleMapsApiKey={process.env.GOOGLE_API_KEY}>
+          <LoadScript googleMapsApiKey={GOOGLE_API_KEY}>
             <GoogleMap
               mapContainerStyle={{
                 width: 'auto',
