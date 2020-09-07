@@ -1,4 +1,4 @@
-## This Webapp allows to view images from a specific location. User can select location from the map or enter the latitude and longitude and view the public images that from that location.
+## This Webapp allows to view images from a specific location. User can select location from the map or enter the latitude and longitude and view the public images from that location.
 
 ## Script to start the project
 
