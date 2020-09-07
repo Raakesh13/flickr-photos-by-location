@@ -23,7 +23,7 @@ class App extends Component {
 
   handlePageChange (pageNumber) {
     fetch(
-      `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${REACT_APP_FLICKR_API_KEY}&lat=${this.state.lat}&lon=${this.state.lon}&format=json&nojsoncallback=1&page=${pageNumber}`
+      `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${process.env.REACT_APP_FLICKR_API_KEY}&lat=${this.state.lat}&lon=${this.state.lon}&format=json&nojsoncallback=1&page=${pageNumber}`
     )
       .then(response => {
         return response.json()
@@ -69,7 +69,7 @@ class App extends Component {
       lon
     })
     fetch(
-      `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${REACT_APP_FLICKR_API_KEY}&lat=${lat}&lon=${lon}&format=json&nojsoncallback=1`
+      `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${proces.env.REACT_APP_FLICKR_API_KEY}&lat=${lat}&lon=${lon}&format=json&nojsoncallback=1`
     )
       .then(response => {
         return response.json()
@@ -179,7 +179,7 @@ class App extends Component {
         )}
 
         <div className='googleMap'>
-          <LoadScript googleMapsApiKey={GOOGLE_API_KEY}>
+          <LoadScript googleMapsApiKey={process.env.GOOGLE_API_KEY}>
             <GoogleMap
               mapContainerStyle={{
                 width: 'auto',
