@@ -110,7 +110,12 @@ class App extends Component {
 
   handleSubmit = e => {
     e.preventDefault()
-
+    
+    if (typeof this.state.lon !== 'number' || typeof this.state.lat !== 'number'){
+     alert('Please provide a valid location')
+     return
+    }
+    
     this.onClick(this.state.lat, this.state.lon)
   }
 
@@ -153,17 +158,19 @@ class App extends Component {
           <div className='imagesBox'>
             <div className='images'>
               {this.state.photos.map(img => {
-                return img
+                return <div className="image">{img}</div>
               })}
             </div>
-            <Pagination
-              activePage={this.state.activePage}
-              itemsCountPerPage={this.state.perPage}
-              totalItemsCount={this.state.totalItemsCount}
-              pageRangeDisplayed={5}
-              onChange={this.handlePageChange.bind(this)}
-              hideDisabled={true}
-            />
+            <div className="pagination_div">
+              <Pagination
+                activePage={this.state.activePage}
+                itemsCountPerPage={this.state.perPage}
+                totalItemsCount={this.state.totalItemsCount}
+                pageRangeDisplayed={5}
+                onChange={this.handlePageChange.bind(this)}
+                hideDisabled={true}
+              />
+            </div>
           </div>
         ) : (
           <div style={{ height: '20px' }}>{this.state.error}</div>
